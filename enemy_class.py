@@ -46,7 +46,7 @@ class Enemy(settings.Setting):
         #      int(self.pix_pos.y)),
         #     self.radius
         # )
-        
+
     def set_speed(self):
         if self.personality in ["speedy", "scared"]:
             speed = 2
@@ -80,7 +80,6 @@ class Enemy(settings.Setting):
         return False
 
     def move(self):
-
         self.direction = self.get_random_direction() \
             if self.personality == "random" \
             else self.get_path_direction(self.target)
@@ -117,13 +116,16 @@ class Enemy(settings.Setting):
                 for neighbor in neighbors:
                     if neighbor[0]+current[0] >= 0 and neighbor[0] + current[0] < len(grid[0]):
                         if neighbor[1]+current[1] >= 0 and neighbor[1] + current[1] < len(grid):
-                            next_cell = [neighbor[0] + current[0],
-                                         neighbor[1] + current[1]]
+                            next_cell = [
+                                neighbor[0] + current[0],
+                                neighbor[1] + current[1]
+                            ]
 
                             if next_cell not in visited and grid[next_cell[1]][next_cell[0]] != 1:
                                 queue.append(next_cell)
                                 path.append(
-                                    {"Current": current, "Next": next_cell})
+                                    {"Current": current, "Next": next_cell}
+                                )
         shortest = [target]
         while target != start:
             for step in path:
