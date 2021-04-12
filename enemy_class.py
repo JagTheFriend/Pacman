@@ -39,7 +39,14 @@ class Enemy(settings.Setting):
 
     def draw(self):
         self.WIN.blit(self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)))
-
+        # pygame.draw.circle(
+        #     self.app.screen,
+        #     self.colour,
+        #     (int(self.pix_pos.x),
+        #      int(self.pix_pos.y)),
+        #     self.radius
+        # )
+        
     def set_speed(self):
         if self.personality in ["speedy", "scared"]:
             speed = 2
@@ -73,17 +80,10 @@ class Enemy(settings.Setting):
         return False
 
     def move(self):
-        if self.personality == "random":
-            self.direction = self.get_random_direction()
 
-        if self.personality == "slow":
-            self.direction = self.get_path_direction(self.target)
-
-        if self.personality == "speedy":
-            self.direction = self.get_path_direction(self.target)
-
-        if self.personality == "scared":
-            self.direction = self.get_path_direction(self.target)
+        self.direction = self.get_random_direction() \
+            if self.personality == "random" \
+            else self.get_path_direction(self.target)
 
     def get_path_direction(self, target):
         next_cell = self.find_next_cell_in_path(target)
@@ -135,19 +135,19 @@ class Enemy(settings.Setting):
     def get_random_direction(self):
         while True:
             number = random.randint(-2, 1)
-            
+
             if number == -2:
                 x_dir, y_dir = 1, 0
-            
+
             elif number == -1:
                 x_dir, y_dir = 0, 1
-            
+
             elif number == 0:
                 x_dir, y_dir = -1, 0
-            
+
             else:
                 x_dir, y_dir = 0, -1
-            
+
             next_pos = vec(self.grid_pos.x + x_dir, self.grid_pos.y + y_dir)
             if next_pos not in self.app.walls:
                 break
@@ -155,7 +155,8 @@ class Enemy(settings.Setting):
 
     def get_pix_pos(self):
         return vec(
-            (self.grid_pos.x*self.app.cell_width)+self.TOP_BOTTOM_BUFFER//2+self.app.cell_width//2,
+            (self.grid_pos.x*self.app.cell_width) +
+            self.TOP_BOTTOM_BUFFER//2+self.app.cell_width//2,
             (self.grid_pos.y*self.app.cell_height)+self.TOP_BOTTOM_BUFFER//2 +
             self.app.cell_height//2
         )
@@ -177,12 +178,12 @@ class Enemy(settings.Setting):
     def set_personality(self):
         if self.number == 0:
             return "speedy"
-        
+
         elif self.number == 1:
             return "slow"
-        
+
         elif self.number == 2:
             return "random"
-        
+
         else:
             return "scared"
