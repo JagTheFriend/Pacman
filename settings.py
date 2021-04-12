@@ -42,6 +42,6 @@ class Setting:
     ENEMIES_RED = pygame.image.load(
         os.path.join("Assets", "Virus - Purple.png")
     )
-    ENEMIES_ORANGE = pygame.image.load(
-        os.path.join("Assets", "pixel_laser_red.png")
+    ENEMIES_PINK = pygame.image.load(
+        os.path.join("Assets", "Virus - Pink.png")
     )

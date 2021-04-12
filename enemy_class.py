@@ -174,7 +174,7 @@ class Enemy(settings.Setting):
             return self.ENEMIES_RED
 
         if self.number == 3:
-            return self.ENEMIES_ORANGE
+            return self.ENEMIES_PINK
 
     def set_personality(self):
         if self.number == 0:
