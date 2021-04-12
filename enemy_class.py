@@ -142,14 +142,19 @@ class Enemy(settings.Setting):
     def get_random_direction(self):
         while True:
             number = random.randint(-2, 1)
+            
             if number == -2:
                 x_dir, y_dir = 1, 0
+            
             elif number == -1:
                 x_dir, y_dir = 0, 1
+            
             elif number == 0:
                 x_dir, y_dir = -1, 0
+            
             else:
                 x_dir, y_dir = 0, -1
+            
             next_pos = vec(self.grid_pos.x + x_dir, self.grid_pos.y + y_dir)
             if next_pos not in self.app.walls:
                 break
@@ -179,9 +184,12 @@ class Enemy(settings.Setting):
     def set_personality(self):
         if self.number == 0:
             return "speedy"
+        
         elif self.number == 1:
             return "slow"
+        
         elif self.number == 2:
             return "random"
+        
         else:
             return "scared"
