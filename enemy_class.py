@@ -31,11 +31,13 @@ class Enemy(settings.Setting):
                 self.move()
 
         # Setting grid position in reference to pix position
-        self.grid_pos[0] = (self.pix_pos[0]-self.TOP_BOTTOM_BUFFER +
-                            self.app.cell_width//2)//self.app.cell_width+1
+        self.grid_pos[0] = (
+            self.pix_pos[0]-self.TOP_BOTTOM_BUFFER + self.app.cell_width//2
+        )//self.app.cell_width+1
 
-        self.grid_pos[1] = (self.pix_pos[1]-self.TOP_BOTTOM_BUFFER +
-                            self.app.cell_height//2)//self.app.cell_height+1
+        self.grid_pos[1] = (
+            self.pix_pos[1]-self.TOP_BOTTOM_BUFFER + self.app.cell_height//2
+        )//self.app.cell_height+1
 
     def draw(self):
         self.WIN.blit(self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)))
