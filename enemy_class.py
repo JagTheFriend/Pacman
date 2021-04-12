@@ -39,13 +39,6 @@ class Enemy(settings.Setting):
 
     def draw(self):
         self.WIN.blit(self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)))
-        # pygame.draw.circle(
-        #     self.app.screen,
-        #     self.colour,
-        #     (int(self.pix_pos.x),
-        #      int(self.pix_pos.y)),
-        #     self.radius
-        # )
 
     def set_speed(self):
         if self.personality in ["speedy", "scared"]:
