@@ -9,41 +9,40 @@ pygame.font.init()
 WIDTH = HEIGHT = 750
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Shooter")
-
 # Load images
 RED_SPACE_SHIP = pygame.image.load(
-    os.path.join("Assets", "pixel_ship_red_small.png")
+    "Assets/Another Game/Virus - Pink.png"
 )
 GREEN_SPACE_SHIP = pygame.image.load(
-    os.path.join("Assets", "pixel_ship_green_small.png")
+    "Assets/Another Game/Virus - Green.png"
 )
 BLUE_SPACE_SHIP = pygame.image.load(
-    os.path.join("Assets", "pixel_ship_blue_small.png")
+    "Assets/Another Game/Virus - Purple.png"
 )
 
 # Player player
 YELLOW_SPACE_SHIP = pygame.image.load(
-    os.path.join("Assets", "pixel_ship_yellow_small.png")
+    "Assets/Another Game/pixel_ship_yellow_small.png"
 )
 
 # Lasers
 RED_LASER = pygame.image.load(
-    os.path.join("Assets", "pixel_laser_red.png")
+    "Assets/Another Game/pixel_laser_red.png"
 )
 GREEN_LASER = pygame.image.load(
-    os.path.join("Assets", "pixel_laser_green.png")
+    "Assets/Another Game/pixel_laser_green.png"
 )
 BLUE_LASER = pygame.image.load(
-    os.path.join("Assets", "pixel_laser_blue.png")
+    "Assets/Another Game/pixel_laser_blue.png"
 )
 YELLOW_LASER = pygame.image.load(
-    os.path.join("Assets", "pixel_laser_yellow.png")
+    "Assets/Another Game/pixel_laser_yellow.png"
 )
 
 # Background
 BG = pygame.transform.scale(
     pygame.image.load(
-        os.path.join("Assets", "background.png")
+        "Assets/Another Game/background.png"
     ),
     (WIDTH, HEIGHT)
 )
@@ -53,7 +52,8 @@ COLORS: [str] = ["red", "blue", "green"]
 
 
 # end line
-END_LINE = "\nThanks for playing the game x)"
+END_LINE = "\nThanks for playing the game xD"
+
 
 class Laser:
     """
@@ -325,10 +325,13 @@ def redraw_window(
 
 def check_keys(*, player: Player, player_vel: int):
     # to check whether an user quit or not
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            print(END_LINE)
-            pygame.quit()
+    try:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print(END_LINE)
+                pygame.quit()
+    except pygame.error:
+        pygame.quit()
 
     try:
         # to get the key pressed
@@ -358,7 +361,7 @@ def check_keys(*, player: Player, player_vel: int):
 
     # f for exiting
     if keys[pygame.K_f]:
-        print("\nThanks for playing x)")
+        print("\nThanks for playing xD")
         exit(code=69)
 
 
@@ -483,7 +486,7 @@ def main_menu():
 
             # f for exiting
             if keys[pygame.K_f]:
-                print("\nThanks for playing x)")
+                print("\nThanks for playing xD")
                 exit(code=69)
 
     print(END_LINE)
