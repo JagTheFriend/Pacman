@@ -26,7 +26,7 @@ class Setting:
     RED = (208, 22, 22)
     GREY = (107, 107, 107)
     WHITE = (255, 255, 255)
-    PLAYER_COLOUR = (190, 194, 15)
+    PLAYER_COLOUR = (0, 255, 114)
 
     # back ground image
     BACK_GROUND = pygame.image.load(
