@@ -453,7 +453,7 @@ def main():
         player.move_lasers(-laser_vel, enemies)
 
 
-def main_menu():
+def run():
     title_font = pygame.font.SysFont("comicsans", 70)
     quit_font = pygame.font.SysFont("Castellar", 50)
 
@@ -494,4 +494,4 @@ def main_menu():
 
 
 if __name__ == "__main__":
-    main_menu()
+    run()
