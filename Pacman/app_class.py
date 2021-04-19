@@ -59,8 +59,6 @@ class App(settings.Setting):
         print("\nThanks for playing the game x)\n")
         sys.exit()
 
-############################ HELPER FUNCTIONS ##################################
-
     def draw_text(self, words, screen, pos, size, colour, font_name, centered=False):
         font = pygame.font.SysFont(font_name, size)
         text = font.render(words, False, colour)
@@ -169,9 +167,6 @@ class App(settings.Setting):
                         self.coins.append(vec(xidx, yidx))
         self.state = "playing"
 
-
-########################### INTRO FUNCTIONS ####################################
-
     def start_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -217,8 +212,6 @@ class App(settings.Setting):
         )
 
         pygame.display.update()
-
-########################### PLAYING FUNCTIONS ##################################
 
     def playing_events(self):
         """
@@ -315,8 +308,6 @@ class App(settings.Setting):
                 ),
                 5
             )
-
-########################### GAME OVER FUNCTIONS ################################
 
     def game_over_events(self):
         for event in pygame.event.get():

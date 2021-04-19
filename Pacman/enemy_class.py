@@ -43,7 +43,7 @@ class Enemy(settings.Setting):
     def draw(self):
         # self.WIN.blit(self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)))
         pygame.draw.circle(
-            self.app.screen, 
+            self.app.screen,
             self.colour,
             (int(self.pix_pos.x),
              int(self.pix_pos.y)
@@ -128,10 +128,11 @@ class Enemy(settings.Setting):
             else:
                 neighbors = [[0, -1], [1, 0], [0, 1], [-1, 0]]
                 for neighbor in neighbors:
-                    if (neighbor[0]+current[0] >= 0 and neighbor[0] + current[0] < len(grid[0]) and
-                        neighbor[1]+current[1] >= 0 and neighbor[1] +
-                            current[1] < len(grid)
-                        ):
+                    if (neighbor[0]+current[0] >= 0
+                        and neighbor[0] + current[0] < len(grid[0]) 
+                        and neighbor[1]+current[1] >= 0 
+                        and neighbor[1] + current[1] < len(grid)
+                    ):
                         next_cell = [
                             neighbor[0] + current[0],
                             neighbor[1] + current[1]
