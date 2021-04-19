@@ -16,6 +16,7 @@ class Enemy(settings.Setting):
         self.colour = self.set_colour()
         self.direction = vec(0, 0)
 
+        self.radius = int(self.app.cell_width//2.3)
         self.personality = self.set_personality()
         self.target = None
         self.speed = self.set_speed()
@@ -26,6 +27,7 @@ class Enemy(settings.Setting):
         if self.target != self.grid_pos:
             self.pix_pos += self.direction * self.speed
 
+            # check whether its time to move
             if self.time_to_move():
                 self.move()
 
@@ -39,7 +41,15 @@ class Enemy(settings.Setting):
         )//self.app.cell_height+1
 
     def draw(self):
-        self.WIN.blit(self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)))
+        # self.WIN.blit(self.colour, (int(self.pix_pos.x), int(self.pix_pos.y)))
+        pygame.draw.circle(
+            self.app.screen, 
+            self.colour,
+            (int(self.pix_pos.x),
+             int(self.pix_pos.y)
+             ),
+            self.radius
+        )
 
     def set_speed(self):
         """Sets the speed of the enemy cells
@@ -66,6 +76,10 @@ class Enemy(settings.Setting):
                 return vec(self.COLS-2, self.ROWS-2)
 
     def time_to_move(self):
+        """Allows the enemy player to check whether it can move
+        Returns:
+            Boolean: True if the enemy cell can move in that direction
+        """
         if (int(self.pix_pos.x+self.TOP_BOTTOM_BUFFER//2) % self.app.cell_width) == 0 and \
             self.direction == vec(1, 0) \
                 or self.direction == vec(-1, 0) \
@@ -115,8 +129,8 @@ class Enemy(settings.Setting):
                 neighbors = [[0, -1], [1, 0], [0, 1], [-1, 0]]
                 for neighbor in neighbors:
                     if (neighbor[0]+current[0] >= 0 and neighbor[0] + current[0] < len(grid[0]) and
-                            neighbor[1]+current[1] >= 0 and neighbor[1] +
-                        current[1] < len(grid)
+                        neighbor[1]+current[1] >= 0 and neighbor[1] +
+                            current[1] < len(grid)
                         ):
                         next_cell = [
                             neighbor[0] + current[0],
@@ -156,7 +170,7 @@ class Enemy(settings.Setting):
                 x_dir, y_dir = 0, -1
 
             next_pos = vec(self.grid_pos.x + x_dir, self.grid_pos.y + y_dir)
-            if next_pos not in self.app.walls:
+            if next_pos not in self.app.walls:  # check whether the enemy cell is hitting a wall
                 break
         return vec(x_dir, y_dir)
 
@@ -165,7 +179,7 @@ class Enemy(settings.Setting):
             (self.grid_pos.x*self.app.cell_width) +
             self.TOP_BOTTOM_BUFFER//2 + self.app.cell_width//2,
 
-            (self.grid_pos.y*self.app.cell_height)+
+            (self.grid_pos.y*self.app.cell_height) +
             self.TOP_BOTTOM_BUFFER//2 + self.app.cell_height//2
         )
 
