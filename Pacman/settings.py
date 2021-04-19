@@ -1,6 +1,4 @@
 import pygame
-import os
-
 
 class Setting:
     """

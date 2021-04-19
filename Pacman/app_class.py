@@ -1,6 +1,5 @@
 import pygame
 import sys
-import copy
 from . import settings
 from . import player_class
 from . import enemy_class
