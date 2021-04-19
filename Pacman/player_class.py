@@ -67,11 +67,11 @@ class Player(settings.Setting):
             if int(self.pix_pos.x+self.TOP_BOTTOM_BUFFER//2) % self.app.cell_width == 0 and \
                     self.direction == vec(1, 0) or self.direction == vec(-1, 0):
                 return True
- 
+
             if int(self.pix_pos.y+self.TOP_BOTTOM_BUFFER//2) % self.app.cell_height == 0 and \
                     self.direction == vec(0, 1) or self.direction == vec(0, -1):
                 return True
- 
+
         return False
 
     def eat_coin(self):
