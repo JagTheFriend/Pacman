@@ -5,9 +5,9 @@ This is a simple Shooting game which I'm currently working on. In order to start
  - Then run the file called `main.py`
 
 ## Controls:
+W - Going up <br>
 A - Going to the right <br>
 S - Going down <br>
-W - Going up <br>
 D - Going to the left <br>
 Space Bar - To Shoot
 <!--

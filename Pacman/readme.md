@@ -5,9 +5,9 @@ This is a simple Pacman game which I'm currently working on. In order to start t
  - Then run the file called `main.py`
 
 ## Controls:
+W - up arrow key(\⬆️) - Going up <br>
 A - left arrow key(\⬅️) - Going to the right <br>
 S - down arrow key(\⬇️) - Going down <br>
-W - up arrow key(\⬆️) - Going up <br>
 D - right arrow key(\➡️) - Going to the left <br>
 
 ### Use:
