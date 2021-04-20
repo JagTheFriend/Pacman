@@ -6,59 +6,59 @@ pygame.font.init()
 # making the window
 WIDTH = HEIGHT = 750
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Space Shooter")
+pygame.display.set_caption('Space Shooter')
 # Load images
 RED_SPACE_SHIP = pygame.image.load(
-    "Assets/Another Game/Virus - Pink.png"
+    'Assets/Another Game/Virus - Pink.png'
 )
 GREEN_SPACE_SHIP = pygame.image.load(
-    "Assets/Another Game/Virus - Green.png"
+    'Assets/Another Game/Virus - Green.png'
 )
 BLUE_SPACE_SHIP = pygame.image.load(
-    "Assets/Another Game/Virus - Purple.png"
+    'Assets/Another Game/Virus - Purple.png'
 )
 
 # Player player
 YELLOW_SPACE_SHIP = pygame.image.load(
-    "Assets/Another Game/pixel_ship_yellow_small.png"
+    'Assets/Another Game/pixel_ship_yellow_small.png'
 )
 
 # Lasers
 RED_LASER = pygame.image.load(
-    "Assets/Another Game/pixel_laser_red.png"
+    'Assets/Another Game/pixel_laser_red.png'
 )
 GREEN_LASER = pygame.image.load(
-    "Assets/Another Game/pixel_laser_green.png"
+    'Assets/Another Game/pixel_laser_green.png'
 )
 BLUE_LASER = pygame.image.load(
-    "Assets/Another Game/pixel_laser_blue.png"
+    'Assets/Another Game/pixel_laser_blue.png'
 )
 YELLOW_LASER = pygame.image.load(
-    "Assets/Another Game/pixel_laser_yellow.png"
+    'Assets/Another Game/pixel_laser_yellow.png'
 )
 
 # Background
 BG = pygame.transform.scale(
     pygame.image.load(
-        "Assets/Another Game/background.png"
+        'Assets/Another Game/background.png'
     ),
     (WIDTH, HEIGHT)
 )
 
 # all the colours of the ship
-COLORS: [str] = ["red", "blue", "green"]
+COLORS: [str] = ['red', 'blue', 'green']
 
 
 # end line
-END_LINE = "\nThanks for playing the game xD"
+END_LINE = '\nThanks for playing the game xD'
 
 
 class Laser:
-    """
+    '''
     Makes the laser
     which shows up when the player and enemy ship(s)
     shoot at each other
-    """
+    '''
 
     def __init__(self, x: int, y: int, img: pygame.image):
         # position of the laser
@@ -69,41 +69,41 @@ class Laser:
         self.mask = pygame.mask.from_surface(self.img)
 
     def draw(self, window: pygame.display):
-        """
+        '''
         Updates the window
-        """
+        '''
         window.blit(self.img, (self.x, self.y))
 
     def move(self, vel: int):
-        """
+        '''
         Allows the laser to travel
         DOWN the main screen
-        """
+        '''
         self.y += vel
 
     def off_screen(self, height: int) -> bool:
-        """
+        '''
         To check whether the laser is outside the main screen
         :return: Boolean
-        """
+        '''
         return not(self.y <= height and self.y >= 0)
 
     def collision(self, obj: object):
-        """
+        '''
         Checks whether the laser collided with an object(or a ship)
         :return: collide(self, obj)
-        """
+        '''
         return collide(self, obj)
 
 
 class Ship:
-    """
+    '''
     This is the base class
     Which allows other class(es) to get the same functionality
 
     Which means that every ship would behave the same, and 
     it can do the same things
-    """
+    '''
     COOLDOWN_COUNTER = 30  # delay between shooting lasers
 
     def __init__(self, x: float, y: float, health: int = 100):
@@ -116,18 +116,18 @@ class Ship:
         self.cool_down_counter = 0
 
     def draw(self, window: pygame.display):
-        """
+        '''
         Draws the laser
-        """
+        '''
         window.blit(self.ship_img, (self.x, self.y))
         for laser in self.lasers:
             laser.draw(window)
 
     def move_lasers(self, vel: int, obj: object):
-        """
+        '''
         Allows the laser to move though the screen
         (creates an animation of a moving laser)
-        """
+        '''
         self.cooldown()
         for laser in self.lasers:
             laser.move(vel)
@@ -140,9 +140,9 @@ class Ship:
                 self.lasers.remove(laser)
 
     def cooldown(self):
-        """
+        '''
         Limiting the number of laser which could be shot per second
-        """
+        '''
         if self.cool_down_counter >= self.COOLDOWN_COUNTER:
             self.cool_down_counter = 0
 
@@ -150,34 +150,34 @@ class Ship:
             self.cool_down_counter += 1
 
     def shoot(self):
-        """
+        '''
         Allows the enemy and the player to be able to shoot lasers
-        """
+        '''
         if self.cool_down_counter == 0:  # check the time difference between 2 adjacent lasers
             laser = Laser(self.x, self.y, self.laser_img)
             self.lasers.append(laser)
             self.cool_down_counter = 1
 
     def get_width(self) -> float:
-        """
+        '''
         Gets the width of the ship image
         :return: Float
-        """
+        '''
         return self.ship_img.get_width()
 
     def get_height(self) -> float:
-        """
+        '''
         Gets the height of the ship image
         :return: Float
-        """
+        '''
         return self.ship_img.get_height()
 
 
 class Player(Ship):
-    """
+    '''
     Makes a player
     Extends `Ship`
-    """
+    '''
 
     def __init__(self, x: float, y: float, health: int = 100):
         super().__init__(x, y, health)
@@ -187,15 +187,15 @@ class Player(Ship):
         self.max_health = health
 
     def move_lasers(self, vel: int, objs: list):
-        """
+        '''
         Checks whether the laser collided with an object(or a ship)
         and removes it from the screen
-        """
+        '''
         self.cooldown()
         for laser in self.lasers:
             laser.move(vel)
 
-            # the laser didn't do anything
+            # the laser didnt do anything
             if laser.off_screen(HEIGHT):
                 self.lasers.remove(laser)
                 continue
@@ -208,16 +208,16 @@ class Player(Ship):
                         self.lasers.remove(laser)
 
     def draw(self, window: pygame.display):
-        """
+        '''
         To draw the laser, player's ship
-        """
+        '''
         super().draw(window)
         self.healthbar(window)
 
     def healthbar(self, window: pygame.display):
-        """
+        '''
         Shows the health bar of the player's ship
-        """
+        '''
         # default health value is 100
         pygame.draw.rect(
             # the box filed with red
@@ -241,14 +241,14 @@ class Player(Ship):
 
 
 class Enemy(Ship):
-    """
+    '''
     Creates the enemies
     Extends `Ship`
-    """
+    '''
     COLOR_MAP = {
-        "red": (RED_SPACE_SHIP, RED_LASER),
-        "green": (GREEN_SPACE_SHIP, GREEN_LASER),
-        "blue": (BLUE_SPACE_SHIP, BLUE_LASER)
+        'red': (RED_SPACE_SHIP, RED_LASER),
+        'green': (GREEN_SPACE_SHIP, GREEN_LASER),
+        'blue': (BLUE_SPACE_SHIP, BLUE_LASER)
     }
 
     def __init__(self, x: float, y: float, color: str, health: int = 100):
@@ -259,15 +259,15 @@ class Enemy(Ship):
         self.mask = pygame.mask.from_surface(self.ship_img)
 
     def move(self, vel: int):
-        """
+        '''
         Allows the enemy ship to only move downwards
-        """
+        '''
         self.y += vel
 
     def shoot(self):
-        """
+        '''
         Allowing the enemy ships to shoot lasers
-        """
+        '''
         if self.cool_down_counter == 0:
             laser = Laser(self.x-20, self.y, self.laser_img)
             self.lasers.append(laser)
@@ -275,10 +275,10 @@ class Enemy(Ship):
 
 
 def collide(obj1, obj2: object) -> bool:
-    """
+    '''
     Checks whether the laser collided with an object(or a ship)
     :return: Boolean
-    """
+    '''
     offset_x = obj2.x - obj1.x
     offset_y = obj2.y - obj1.y
     return obj1.mask.overlap(obj2.mask, (offset_x, offset_y)) != None
@@ -294,15 +294,15 @@ def redraw_window(
     lost: bool,
     lost_font: pygame.font.SysFont
 ) -> None:
-    """
+    '''
     Updates things such as `Current Score` etc 
     and displays it on the window
-    """
+    '''
     WIN.blit(BG, (0, 0))
 
     # draw text
-    lives_label = main_font.render(f"Lives: {lives}", 1, (255, 255, 255))
-    level_label = main_font.render(f"Level: {level}", 1, (255, 255, 255))
+    lives_label = main_font.render(f'Lives: {lives}', 1, (255, 255, 255))
+    level_label = main_font.render(f'Level: {level}', 1, (255, 255, 255))
 
     WIN.blit(lives_label, (10, 10))
     WIN.blit(level_label, (WIDTH - level_label.get_width() - 10, 10))
@@ -315,7 +315,7 @@ def redraw_window(
     player.draw(WIN)
 
     if lost:  # check whether the player has lost
-        lost_label = lost_font.render("You Lost!!", 1, (255, 255, 255))
+        lost_label = lost_font.render('You Lost!!', 1, (255, 255, 255))
         WIN.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 350))
 
     pygame.display.update()
@@ -359,7 +359,7 @@ def check_keys(*, player: Player, player_vel: int):
 
     # f for exiting
     if keys[pygame.K_f]:
-        print("\nThanks for playing xD")
+        print('\nThanks for playing xD')
         exit(code=69)
 
 
@@ -369,8 +369,8 @@ def main():
     FPS: int = 60
     level: int = 0
     lives: int = 5
-    main_font = pygame.font.SysFont("comicsans", 50)
-    lost_font = pygame.font.SysFont("comicsans", 60)
+    main_font = pygame.font.SysFont('comicsans', 50)
+    lost_font = pygame.font.SysFont('comicsans', 60)
 
     # for enemy
     enemies = []
@@ -452,18 +452,18 @@ def main():
 
 
 def run():
-    title_font = pygame.font.SysFont("comicsans", 70)
-    quit_font = pygame.font.SysFont("Castellar", 50)
+    title_font = pygame.font.SysFont('comicsans', 70)
+    quit_font = pygame.font.SysFont('Castellar', 50)
 
     while True:
         WIN.blit(BG, (0, 0))
         title_label = title_font.render(
-            """Press the mouse to begin...""",
+            '''Press the mouse to begin...''',
             1,
             (255, 255, 255)
         )
         quit_label = quit_font.render(
-            """Press f to quit""",
+            '''Press f to quit''',
             1,
             (255, 255, 255)
         )
@@ -484,12 +484,12 @@ def run():
 
             # f for exiting
             if keys[pygame.K_f]:
-                print("\nThanks for playing xD")
+                print('\nThanks for playing xD')
                 exit(code=69)
 
     print(END_LINE)
     pygame.quit()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     run()
