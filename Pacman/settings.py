@@ -57,5 +57,5 @@ class Setting:
     ENEMIES_PINK = (215, 159, 33)
 
     # load important data
-    GAME_WALLS = "Assets/Pacman/walls_1.txt"
+    GAME_WALLS = "Assets/Pacman/walls.txt"
     SCORE = "Assets/Pacman/score.txt"
