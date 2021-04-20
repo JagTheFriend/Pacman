@@ -198,6 +198,5 @@ class Enemy(settings.Setting):
         personalities = {
             0: 'speedy',
             1: 'slow',
-            2: 'random'
         }
         return personalities.get(self.number, 'scared')
