@@ -2,10 +2,10 @@ import pygame
 
 
 class Setting:
-    """
+    '''
     These are important variables which is
     required to run the game
-    """
+    '''
 
     # screen settings
     WIDTH = 610
@@ -28,27 +28,31 @@ class Setting:
     WHITE = (255, 255, 255)
     PLAYER_COLOUR = (0, 255, 114)
 
-    # back ground image
-    BACK_GROUND = pygame.image.load(
-        "Assets/Pacman/maze.png"
-    )
+    # back ground images
+    IMAGES = [
+        pygame.image.load('Assets/Pacman/maze original.png'),
+        pygame.image.load('Assets/Pacman/maze purple.png'),
+        pygame.image.load('Assets/Pacman/maze red.png'),
+        pygame.image.load('Assets/Pacman/maze green.png'),
+        pygame.image.load('Assets/Pacman/maze original.png')
+    ]
 
     # font settings
     START_TEXT_SIZE = 16
-    START_FONT = "arial black"
+    START_FONT = 'arial black'
 
     # load all the images
     # ENEMIES_BLUE = pygame.image.load(
-    #     "Assets/Pacman/Virus - Blue.png"
+    #     'Assets/Pacman/Virus - Blue.png'
     # )
     # ENEMIES_YELLOW = pygame.image.load(
-    #     "Assets/Pacman/Virus - Green.png"
+    #     'Assets/Pacman/Virus - Green.png'
     # )
     # ENEMIES_RED = pygame.image.load(
-    #     "Assets/Pacman/Virus - Purple.png"
+    #     'Assets/Pacman/Virus - Purple.png'
     # )
     # ENEMIES_PINK = pygame.image.load(
-    #     "Assets/Pacman/Virus - Pink.png"
+    #     'Assets/Pacman/Virus - Pink.png'
     # )
 
     ENEMIES_BLUE = (43, 78, 203)
@@ -57,5 +61,6 @@ class Setting:
     ENEMIES_PINK = (215, 159, 33)
 
     # load important data
-    GAME_WALLS = "Assets/Pacman/walls.txt"
-    SCORE = "Assets/Pacman/score.txt"
+    GAME_WALLS = 'Assets/Pacman/walls.txt'
+    SCORE = 'Assets/Pacman/score.txt'
+    MAX_SCORE = [40, 100, 150, 200, 287]
