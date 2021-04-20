@@ -145,6 +145,7 @@ class App(settings.Setting):
         self.state = 'wait'
 
         self.load(self.IMAGES[self.lvl_counter])
+        self.reset()
         pygame.display.update()
 
     def make_enemies(self):

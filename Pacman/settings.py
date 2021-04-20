@@ -63,4 +63,4 @@ class Setting:
     # load important data
     GAME_WALLS = 'Assets/Pacman/walls.txt'
     SCORE = 'Assets/Pacman/score.txt'
-    MAX_SCORE = [40, 100, 150, 200, 287]
+    MAX_SCORE = [50, 100, 150, 200, 287]
