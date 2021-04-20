@@ -301,15 +301,19 @@ class App(settings.Setting):
                 self.running = False
 
             if event.type == pygame.KEYDOWN:
+                # going to the left
                 if event.key in [pygame.K_LEFT, pygame.K_a]:
                     self.player.move(vec(-1, 0))
 
+                # going to the right
                 if event.key in [pygame.K_RIGHT, pygame.K_d]:
                     self.player.move(vec(1, 0))
 
+                # going up
                 if event.key in [pygame.K_UP, pygame.K_w]:
                     self.player.move(vec(0, -1))
 
+                # going down
                 if event.key in [pygame.K_DOWN, pygame.K_s]:
                     self.player.move(vec(0, 1))
 
@@ -317,9 +321,13 @@ class App(settings.Setting):
                     self.player.current_score = 0
                     self.state = 'level'
                 
+                # Pausing the game
                 if event.key in [pygame.K_DOWN, pygame.K_p]:
                     self.state = 'pause'
 
+                if event.key in [pygame.K_DOWN, pygame.K_f]:
+                    sys.exit()
+                    print("Thx for playing the game xD")
 
     def playing_update(self):
         self.player.update()
