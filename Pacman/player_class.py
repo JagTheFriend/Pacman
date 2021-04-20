@@ -59,10 +59,10 @@ class Player(settings.Setting):
             )
 
     def on_coin(self) -> bool:
-        """
+        '''
         Checks whether the player is on a coin
         :return: Boolean
-        """
+        '''
         if self.grid_pos in self.app.coins:
             if int(self.pix_pos.x+self.TOP_BOTTOM_BUFFER//2) % self.app.cell_width == 0 and \
                     self.direction == vec(1, 0) or self.direction == vec(-1, 0):
@@ -96,10 +96,10 @@ class Player(settings.Setting):
             return True
 
     def can_move(self):
-        """
+        '''
         Checks whether the player can move in that particular direction
         :return: Boolean
-        """
+        '''
         for wall in self.app.walls:
             if vec(self.grid_pos+self.direction) == wall:
                 return False
