@@ -52,15 +52,15 @@ class Enemy(settings.Setting):
         )
 
     def set_speed(self):
-        """Sets the speed of the enemy cells
+        '''Sets the speed of the enemy cells
 
         Returns:
             Integer: 2 if the personality is speedy or scared, otherwise 1
-        """
-        return 2 if self.personality in ["speedy", "scared"] else 1
+        '''
+        return 2 if self.personality in ['speedy', 'scared'] else 1
 
     def set_target(self):
-        if self.personality == "speedy" or self.personality == "slow":
+        if self.personality == 'speedy' or self.personality == 'slow':
             return self.app.player.grid_pos
         else:
             if self.app.player.grid_pos[0] > self.COLS//2 and self.app.player.grid_pos[1] > self.ROWS//2:
@@ -76,10 +76,10 @@ class Enemy(settings.Setting):
                 return vec(self.COLS-2, self.ROWS-2)
 
     def time_to_move(self):
-        """Allows the enemy player to check whether it can move
+        '''Allows the enemy player to check whether it can move
         Returns:
             Boolean: True if the enemy cell can move in that direction
-        """
+        '''
         if (int(self.pix_pos.x+self.TOP_BOTTOM_BUFFER//2) % self.app.cell_width) == 0 and \
             self.direction == vec(1, 0) \
                 or self.direction == vec(-1, 0) \
@@ -93,9 +93,9 @@ class Enemy(settings.Setting):
         return False
 
     def move(self):
-        """Allows the enemies to move"""
+        '''Allows the enemies to move'''
         self.direction = self.get_random_direction() \
-            if self.personality == "random" \
+            if self.personality == 'random' \
             else self.get_path_direction(self.target)
 
     def get_path_direction(self, target):
@@ -141,20 +141,20 @@ class Enemy(settings.Setting):
                         if next_cell not in visited and grid[next_cell[1]][next_cell[0]] != 1:
                             queue.append(next_cell)
                             path.append(
-                                {"Current": current, "Next": next_cell}
+                                {'Current': current, 'Next': next_cell}
                             )
         shortest = [target]
         while target != start:
             for step in path:
-                if step["Next"] == target:
-                    target = step["Current"]
-                    shortest.insert(0, step["Current"])
+                if step['Next'] == target:
+                    target = step['Current']
+                    shortest.insert(0, step['Current'])
         return shortest
 
     def get_random_direction(self):
-        """Gets a random direction for the enemy cells to move
+        '''Gets a random direction for the enemy cells to move
         :return: The `X` and the `Y` direction
-        """
+        '''
         while True:
             number = random.randint(-2, 1)
 
@@ -185,7 +185,7 @@ class Enemy(settings.Setting):
         )
 
     def set_colour(self):
-        """Sets the color of the enemy character"""
+        '''Sets the color of the enemy character'''
         possible_colors = {
             0: self.ENEMIES_BLUE,
             1: self.ENEMIES_YELLOW,
@@ -196,8 +196,8 @@ class Enemy(settings.Setting):
 
     def set_personality(self):
         personalities = {
-            0: "speedy",
-            1: "slow",
-            2: "random"
+            0: 'speedy',
+            1: 'slow',
+            2: 'random'
         }
-        return personalities.get(self.number, "scared")
+        return personalities.get(self.number, 'scared')
