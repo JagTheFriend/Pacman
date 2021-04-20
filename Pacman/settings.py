@@ -60,6 +60,8 @@ class Setting:
     ENEMIES_RED = (208, 22, 22)
     ENEMIES_PINK = (215, 159, 33)
 
+    MUSIC = "Assets/Pacman/Pew.wav"
+
     # load important data
     GAME_WALLS = 'Assets/Pacman/walls.txt'
     SCORE = 'Assets/Pacman/score.txt'

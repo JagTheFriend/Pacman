@@ -3,9 +3,11 @@ from . import settings
 
 vec = pygame.math.Vector2
 
-
+pygame.mixer.init()
 class Player(settings.Setting):
     def __init__(self, app, pos):
+        self.COIN_SOUND = pygame.mixer.Sound(self.MUSIC)
+
         self.app = app
         self.starting_pos = [pos.x, pos.y]
         self.grid_pos = pos
@@ -77,6 +79,7 @@ class Player(settings.Setting):
     def eat_coin(self):
         self.app.coins.remove(self.grid_pos)
         self.current_score += 1
+        self.COIN_SOUND.play()
 
     def move(self, direction):
         self.stored_direction = direction

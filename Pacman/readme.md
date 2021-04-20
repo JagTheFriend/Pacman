@@ -16,5 +16,5 @@ F - To quit the game
 
 <!--
 Feel free to raise [new issues](https://github.com/JagTheFriend/Pacman/issues), and/or <br> create [pull requests](https://github.com/JagTheFriend/Pacman/pulls) if you are able to find more bugs or <br> fix the existing ones
-i dont need that for now ^^^
+i don't need that for now ^^^
 -->
