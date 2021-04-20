@@ -6,6 +6,8 @@ from . import enemy_class
 
 
 pygame.init()
+pygame.mixer.init()
+
 vec = pygame.math.Vector2
 
 first_time = True
@@ -152,6 +154,8 @@ class App(settings.Setting):
             self.old_score = self.player.current_score
 
         self.screen.fill(self.BLACK)
+        pygame.mixer.Sound(self.LEVEL_UP_MUSIC).play()
+
         self.draw_text(
             f'GG, you leveled up to: {1 if self.lvl_counter == 0 else self.lvl_counter}',
             self.screen,

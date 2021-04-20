@@ -61,6 +61,7 @@ class Setting:
     ENEMIES_PINK = (215, 159, 33)
 
     MUSIC = "Assets/Pacman/Pew.wav"
+    LEVEL_UP_MUSIC = "Assets/Pacman/Win.wav"
 
     # load important data
     GAME_WALLS = 'Assets/Pacman/walls.txt'

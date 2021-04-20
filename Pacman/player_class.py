@@ -4,6 +4,8 @@ from . import settings
 vec = pygame.math.Vector2
 
 pygame.mixer.init()
+
+
 class Player(settings.Setting):
     def __init__(self, app, pos):
         self.COIN_SOUND = pygame.mixer.Sound(self.MUSIC)
@@ -85,9 +87,13 @@ class Player(settings.Setting):
         self.stored_direction = direction
 
     def get_pix_pos(self):
-        return vec((self.grid_pos[0]*self.app.cell_width)+self.TOP_BOTTOM_BUFFER//2+self.app.cell_width//2,
-                   (self.grid_pos[1]*self.app.cell_height) +
-                   self.TOP_BOTTOM_BUFFER//2+self.app.cell_height//2)
+        return vec(
+            (self.grid_pos[0]*self.app.cell_width) +
+            self.TOP_BOTTOM_BUFFER//2 +
+            self.app.cell_width//2,
+            (self.grid_pos[1]*self.app.cell_height) +
+            self.TOP_BOTTOM_BUFFER//2+self.app.cell_height//2
+        )
 
     def time_to_move(self):
         if int(self.pix_pos.x+self.TOP_BOTTOM_BUFFER//2) % self.app.cell_width == 0 and \
