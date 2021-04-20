@@ -62,6 +62,9 @@ class App(settings.Setting):
             elif self.state == 'wait':
                 self.start_events()
 
+            elif self.state == 'pause':
+                self.pause_events()
+
             else:
                 self.running = False
             self.clock.tick(self.FPS)
@@ -115,6 +118,33 @@ class App(settings.Setting):
                                 self.cell_width, self.cell_height
                             )
                         )
+
+    def pause_events(self):
+        '''Allows the user to pause the game'''
+        if self.old_score < self.player.current_score:
+            self.old_score = self.player.current_score
+
+        self.screen.fill(self.BLACK)
+        self.draw_text(
+            f'Press ENTER to play',
+            self.screen,
+            [self.WIDTH//2, self.HEIGHT//2-50],
+            self.START_TEXT_SIZE,
+            (170, 132, 58),
+            self.START_FONT,
+            centered=True
+        )
+
+        self.draw_text(
+            f'HIGHEST SCORE: {self.old_score}',
+            self.screen,
+            [4, 0],
+            self.START_TEXT_SIZE,
+            (255, 255, 255),
+            self.START_FONT
+        )
+        self.state = 'wait'
+        pygame.display.update()
 
     def level_up_draw(self):
         '''This is the level up screen'''
@@ -184,10 +214,7 @@ class App(settings.Setting):
             )
 
     def reset(self):
-        '''
-        Resets the board
-        '''
-
+        '''Resets the board'''
         # keep track of the highest score
         if self.old_score < self.player.current_score:
             self.old_score = self.player.current_score
@@ -286,10 +313,13 @@ class App(settings.Setting):
                 if event.key in [pygame.K_DOWN, pygame.K_s]:
                     self.player.move(vec(0, 1))
 
-                elif self.player.current_score > self.MAX_SCORE[self.lvl_counter]:
+                if self.player.current_score > self.MAX_SCORE[self.lvl_counter]:
                     self.player.current_score = 0
                     self.state = 'level'
-                    return 
+                
+                if event.key in [pygame.K_DOWN, pygame.K_p]:
+                    self.state = 'pause'
+
 
     def playing_update(self):
         self.player.update()
