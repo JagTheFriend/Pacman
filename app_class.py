@@ -62,11 +62,39 @@ class App:
                 self.level_up_events()
                 self.level_up_draw()
 
+            elif self.state == 'finished':
+                self.finish_up_events()
+                self.finish_up_draw()
+
             else:
                 self.running = False
             self.clock.tick(FPS)
         pygame.quit()
         sys.exit()
+
+    def finish_up_events(self):
+        return self.reset()
+    
+    def finish_up_draw(self):
+        self.screen.fill(BLACK)
+        self.draw_text(
+            'Well done, you won the game!!!',
+            self.screen,
+            [WIDTH//2, HEIGHT//2-50],
+            START_TEXT_SIZE,
+            (170, 132, 58),
+            START_FONT,
+            centered=True
+        )
+        self.draw_text(
+            f'HIGHEST SCORE: {self.highest_score}',
+            self.screen,
+            [4, 0],
+            START_TEXT_SIZE,
+            (255, 255, 255),
+            START_FONT
+        )
+        pygame.display.update()
 
     def pause_draw(self):
         self.screen.fill(BLACK)
@@ -212,6 +240,7 @@ class App:
                 self.player.pix_pos = self.player.get_pix_pos()
                 self.player.direction *= 0
 
+                self.player.speed -= REDUCE_VELOCITY
                 for enemy in self.enemies:
                     enemy.grid_pos = vec(enemy.starting_pos)
                     enemy.pix_pos = enemy.get_pix_pos()
@@ -224,6 +253,7 @@ class App:
                             if char == 'C':
                                 self.coins.append(vec(xidx, yidx))
 
+                self.load()  # adds the new map
                 self.state = 'playing'
 
     def start_draw(self):

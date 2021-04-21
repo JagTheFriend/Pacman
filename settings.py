@@ -44,3 +44,4 @@ NEXT_LEVEL = [
 ]
 
 LEVEL_UP_MUSIC = "Assets/Win.wav"
+REDUCE_VELOCITY = 0.375
