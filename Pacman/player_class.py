@@ -33,14 +33,19 @@ class Player:
             self.eat_coin()
 
     def draw(self):
-        pygame.draw.circle(
-            self.app.screen,
-            PLAYER_COLOUR,
+        # pygame.draw.circle(
+        #     self.app.screen,
+        #     PLAYER_COLOUR,
+        #     (int(self.pix_pos.x),
+        #      int(self.pix_pos.y)),
+        #     self.app.cell_width//2-2
+        # )
+        WIN.blit(
+            MAIN_PLAYER_COLOUR,
             (int(self.pix_pos.x),
-             int(self.pix_pos.y)),
-            self.app.cell_width//2-2
+             int(self.pix_pos.y-10)
+            )
         )
-
         # Drawing player lives
         for x in range(self.lives):
             pygame.draw.circle(self.app.screen, PLAYER_COLOUR,
