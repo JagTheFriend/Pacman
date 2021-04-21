@@ -1,6 +1,7 @@
-from .app_class import App
+from app_class import *
 
-
-def run():
+if __name__ == '__main__':
+    print("Thanks for playing xD")
     app = App()
     app.run()
+
