@@ -94,6 +94,7 @@ class App:
             (255, 255, 255),
             START_FONT
         )
+        self.lvl_counter = 0  # start from level 0
         pygame.display.update()
 
     def pause_draw(self):
@@ -311,6 +312,10 @@ class App:
 
                 if event.key in [pygame.K_DOWN, pygame.K_f]:
                     sys.exit()
+
+            if self.lvl_counter == 5:
+                self.state = "finished"
+                return
 
             if NEXT_LEVEL[self.lvl_counter] < self.player.current_score:
                 self.lvl_counter += 1
