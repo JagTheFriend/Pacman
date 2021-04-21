@@ -32,11 +32,17 @@ class Enemy:
                             self.app.cell_height//2)//self.app.cell_height+1
 
     def draw(self):
-        pygame.draw.circle(
-            self.app.screen,
-            self.colour,
-            (int(self.pix_pos.x), int(self.pix_pos.y)),
-            self.radius
+        # pygame.draw.circle(
+        #     self.app.screen,
+        #     self.colour,
+        #     (int(self.pix_pos.x), int(self.pix_pos.y)),
+        #     self.radius
+        # )
+        WIN.blit(
+            self.colour, 
+            (int(self.pix_pos.x)-10, 
+             int(self.pix_pos.y)-5
+            )
         )
 
     def set_speed(self):
@@ -129,13 +135,16 @@ class Enemy:
 
     def set_colour(self):
         if self.number == 0:
-            return (43, 78, 203)
+            return BUE_ENEMY
+        
         if self.number == 1:
-            return (197, 200, 27)
+            return PURPLE_ENEMY
+        
         if self.number == 2:
-            return (189, 29, 29)
+            return RED_ENEMY
+
         if self.number == 3:
-            return (215, 159, 33)
+            return GREEN_ENEMY
 
     def set_personality(self):
         if self.number == 0:
@@ -145,4 +154,4 @@ class Enemy:
             return 'slow'
         
         else:
-            return 'scared'
+            return 'speedy'

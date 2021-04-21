@@ -17,6 +17,13 @@ WHITE = (255, 255, 255)
 PLAYER_COLOUR = (190, 194, 15)
 
 MAIN_PLAYER_COLOUR = pygame.image.load("Assets/Game Player16.png")
+
+BUE_ENEMY = pygame.image.load("Assets/Virus - Blue16.png")
+RED_ENEMY = pygame.image.load("Assets/Virus - Pink16.png")
+GREEN_ENEMY = pygame.image.load("Assets/Virus - Green16.png")
+PURPLE_ENEMY = pygame.image.load("Assets/Virus - Purple16.png")
+
+
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # font settings
