@@ -24,9 +24,11 @@ class Player:
             if self.stored_direction != None:
                 self.direction = self.stored_direction
             self.able_to_move = self.can_move()
+
         # Setting grid position in reference to pix pos
         self.grid_pos[0] = (self.pix_pos[0]-TOP_BOTTOM_BUFFER +
                             self.app.cell_width//2)//self.app.cell_width+1
+
         self.grid_pos[1] = (self.pix_pos[1]-TOP_BOTTOM_BUFFER +
                             self.app.cell_height//2)//self.app.cell_height+1
         if self.on_coin():
@@ -35,7 +37,7 @@ class Player:
     def draw(self):
         WIN.blit(
             MAIN_PLAYER_COLOUR,
-            (int(self.pix_pos.x),
+            (int(self.pix_pos.x-7),
              int(self.pix_pos.y-10)
             )
         )
