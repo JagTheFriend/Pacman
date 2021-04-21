@@ -21,6 +21,7 @@ RED_ENEMY = pygame.image.load("Assets/Virus - Pink16.png")
 GREEN_ENEMY = pygame.image.load("Assets/Virus - Green16.png")
 PURPLE_ENEMY = pygame.image.load("Assets/Virus - Purple16.png")
 
+COIN_COLOR = pygame.image.load("Assets/mask.png")
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
