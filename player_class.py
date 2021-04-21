@@ -43,8 +43,12 @@ class Player:
         )
         # Drawing player lives
         for x in range(self.lives):
-            pygame.draw.circle(self.app.screen, PLAYER_COLOUR,
-                               (30 + 20*x, HEIGHT - 15), 7)
+            pygame.draw.circle(
+                self.app.screen, 
+                PLAYER_COLOUR,
+                (30 + 20*x, HEIGHT - 15), 
+                7
+            )
 
     def on_coin(self):
         if self.grid_pos in self.app.coins:
