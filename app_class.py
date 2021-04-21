@@ -225,7 +225,6 @@ class App:
                                 self.coins.append(vec(xidx, yidx))
 
                 self.state = 'playing'
-                self.state = 'playing'
 
     def start_draw(self):
         self.screen.fill(BLACK)
@@ -301,11 +300,6 @@ class App:
         self.screen.blit(
             self.background, (TOP_BOTTOM_BUFFER//2, TOP_BOTTOM_BUFFER//2)
         )
-        # if self.player.current_score > self.highest_score:
-        #     self.highest_score = self.player.current_score
-
-        #     with open(SCORE_FILE, "w") as file:
-        #         file.write(str(self.player.current_score))
 
         self.draw_coins()
         # self.draw_grid()
