@@ -32,12 +32,6 @@ class Enemy:
                             self.app.cell_height//2)//self.app.cell_height+1
 
     def draw(self):
-        # pygame.draw.circle(
-        #     self.app.screen,
-        #     self.colour,
-        #     (int(self.pix_pos.x), int(self.pix_pos.y)),
-        #     self.radius
-        # )
         WIN.blit(
             self.colour, 
             (int(self.pix_pos.x)-10, 
