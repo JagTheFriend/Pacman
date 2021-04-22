@@ -42,6 +42,4 @@ SCORE_FILE = 'Assets/score.txt'
 NEXT_LEVEL = [
     50, 100, 150, 200, 287
 ]
-
-LEVEL_UP_MUSIC = "Assets/Win.wav"
 REDUCE_VELOCITY = 0.375

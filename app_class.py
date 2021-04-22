@@ -7,9 +7,7 @@ from enemy_class import *
 
 
 pygame.init()
-pygame.mixer.init()
 vec = pygame.math.Vector2
-
 
 class App:
     def __init__(self):
@@ -120,7 +118,6 @@ class App:
 
     def level_up_draw(self):
         self.screen.fill(BLACK)
-        pygame.mixer.Sound(LEVEL_UP_MUSIC).play()
         self.draw_text(
             f'GG, you leveled up to {self.lvl_counter}!, Press ENTER to continue..',
             self.screen,
