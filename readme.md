@@ -11,7 +11,7 @@ S - down arrow key(⬇️) - Going down <br>
 D - right arrow key(➡️) - Going to the left <br>
 
 ### Use:
-P - To pause the Game
+P - To pause the Game <br>
 F - To quit the game
 
 <!--
