@@ -237,25 +237,25 @@ class App:
 
             if event.type == pygame.KEYDOWN and event.key in [pygame.K_SPACE, pygame.K_RETURN]:
                 self.player.current_score = 0
+                
+                if self.player.current_score > self.highest_score:
+                    self.highest_score = self.player.current_score
+
+                with open(SCORE_FILE, "w") as file:
+                    file.write(str(self.player.current_score))
+                
+                self.player.lives = 3
+                self.state = 'playing'
+                
                 self.player.grid_pos = vec(self.player.starting_pos)
                 self.player.pix_pos = self.player.get_pix_pos()
                 self.player.direction *= 0
-
-                self.player.speed -= REDUCE_VELOCITY
-                for enemy in self.enemies:
-                    enemy.grid_pos = vec(enemy.starting_pos)
-                    enemy.pix_pos = enemy.get_pix_pos()
-                    enemy.direction *= 0
-
-                self.coins = []
-                with open(GAME_WALLS, 'r') as file:
-                    for yidx, line in enumerate(file):
-                        for xidx, char in enumerate(line):
-                            if char == 'C':
-                                self.coins.append(vec(xidx, yidx))
-
-                self.load()  # adds the new map
-                self.state = 'playing'
+                
+                self.background = pygame.image.load(MAPS[self.lvl_counter])
+                
+                self.background = pygame.transform.scale(
+                    self.background, (MAZE_WIDTH, MAZE_HEIGHT)
+                )
 
     def start_draw(self):
         self.screen.fill(BLACK)
@@ -337,12 +337,17 @@ class App:
         )
 
         self.draw_coins()
-        # self.draw_grid()
         self.draw_text(f'CURRENT SCORE: {self.player.current_score}',
                        self.screen, [60, 0], 18, WHITE, START_FONT)
 
-        self.draw_text(f'HIGH SCORE: {self.highest_score}', self.screen, [
-                       WIDTH//2+60, 0], 18, WHITE, START_FONT)
+        self.draw_text(
+            f'HIGH SCORE: {self.highest_score}', 
+            self.screen, 
+            [WIDTH//2+60, 0], 
+            18, 
+            WHITE, 
+            START_FONT
+        )
 
         self.player.draw()
 
